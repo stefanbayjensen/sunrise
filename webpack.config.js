@@ -7,7 +7,7 @@ module.exports = {
     base: './scripts/util/base.js',
   },
   stats: 'errors-only',
-  mode: 'development',
+  mode: process.env.NODE_ENV || 'development',
   target: 'web',
   output: {
     path: path.resolve(__dirname, 'assets'),

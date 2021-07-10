@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "webpack b",
+    "build": "webpack b --node-env production",
     "watch": "shopify theme serve & webpack w",
     "dev": "npm run watch",
     "start": "npm run watch"
