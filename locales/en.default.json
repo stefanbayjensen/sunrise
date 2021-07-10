@@ -1,5 +1,7 @@
 {
   "general": {
-    "search": "Search"
+    "search": {
+      "search": "Search"
+    }
   }
 }

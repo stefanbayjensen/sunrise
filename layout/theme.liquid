@@ -13,7 +13,7 @@
     {%- endif -%}
 
     <title>{{ page_title }}</title>
-    
+
     {%- render 'head.meta' -%}
     {%- render 'head.style' -%}
 
@@ -21,8 +21,10 @@
       <meta name="description" content="{{ page_description | escape }}">
     {% endif %}
 
+    <div data-component="consoleLog" data-text="This is a test, of components"></div>
 
-    <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'index.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'base.js' | asset_url }}" defer="defer"></script>
     {{ content_for_header }}
 
     <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
@@ -33,13 +35,9 @@
       {{ "accessibility.skip_to_text" | t }}
     </a>
 
-    {% section 'header' %}
-
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>
-
-    {% section 'footer' %}
 
     <ul hidden>
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>

@@ -1,0 +1,21 @@
+{%- liquid
+  assign placeholder_size = placeholder_size | default: '1x1'
+  assign placeholder_url = '_' | append: placeholder_size | append: '.'
+
+  assign mobile_img = mobile_img | default: img
+  assign max_width = max_width | default: 1944
+
+  assign = img_placeholder = img | img_url: placeholder_size
+  assign = img_srcset = img_placeholder | replace: placeholder_url, '_{width}x.'
+
+  assign = mobile_placeholder = mobile_img | img_url: placeholder_size
+  assign = mobile_srcset = mobile_placeholder | replace: placeholder_url, '_{width}x.'
+-%}
+
+{%- comment -%}theme-check-disable{%- endcomment -%}
+<picture>
+  <source data-srcset="{{- mobile_srcset -}}" media="(max-width: 1024px)">
+  <source data-srcset="{{- img_srcset -}}" media="(min-width: 1024px)">
+  <img src="{{- img_placeholder -}}" data-src="{{- img_srcset -}}" data-sizes="auto" data-max-width="{{- max_width -}}" alt="{{- img.alt -}}" class="lazyload">
+</picture>
+{% comment %}theme-check-enable{% endcomment %}

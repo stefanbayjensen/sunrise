@@ -1,0 +1,38 @@
+{%- liquid
+  assign s = section.settings
+-%}
+
+{%- render 'component.picture', img: s.image, mobile_img: s.mobile_image -%}
+
+{% schema %}
+  {
+    "name": "Text image",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "mobile_image",
+        "label": "Mobile image"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "content",
+        "label": "Content"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Text image"
+      }
+    ]
+  }
+{% endschema %}

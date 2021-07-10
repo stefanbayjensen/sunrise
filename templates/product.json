@@ -52,7 +52,5 @@
       ]
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["main"]
 }
