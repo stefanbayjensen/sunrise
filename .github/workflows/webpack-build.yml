@@ -5,9 +5,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js
+        with:
+          persist-credentials: false
+      - name: Compile source files
         uses: actions/setup-node@v1
         with:
           node-version: '14.x'
       - run: npm ci
       - run: npm run build
+      - name: Commit & push changes
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          author_name: Shopify Wizard 🧙🏼‍♂️
+          author_email: phill@askphill.com
+          branch: main
+          message: 'chore: compile source files'
