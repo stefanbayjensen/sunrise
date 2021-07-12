@@ -7,7 +7,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           persist-credentials: false
-      - name: Compile source files
+      - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
           node-version: '14.x'
@@ -19,5 +19,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           author_name: Shopify Wizard 🧙🏼‍♂️
           author_email: phill@askphill.com
+          coauthor_name: Ask Phill
           branch: main
           message: 'chore: compile source files'

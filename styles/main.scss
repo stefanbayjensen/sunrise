@@ -1,16 +1,8 @@
-html {
-  font-size: 10px;
-}
+// Global
+@use 'global/reset';
+@use 'global/typography';
+@use 'global/global';
+@use 'global/lazysizes';
 
-body {
-  background: #282828;
-  color: #fff;
-  display: flex;
-  flex-flow: column;
-  font-size: 1.6rem;
-}
-
-img {
-  height: auto;
-  width: 100%;
-}
+// Component
+@use 'component/accordion';

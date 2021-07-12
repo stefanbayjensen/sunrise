@@ -1,0 +1,9 @@
+.price {
+  &--old {
+    text-decoration: line-through;
+    
+    &:not(:empty){
+      margin-left: 0.5em;
+    }
+  }
+}

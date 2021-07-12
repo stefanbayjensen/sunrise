@@ -1,0 +1,11 @@
+{%- liquid
+  assign price = product.price
+  assign compare_at = product.compare_at_price
+-%}
+
+<div class="price--outer">
+  <span class="price">{{- price | money -}}</span>
+  {%- if compare_at > price -%}
+    <span class="price price--old">{{- compare_at | money -}}</span>
+  {%- endif -%}
+</div>

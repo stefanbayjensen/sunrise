@@ -1,0 +1,6 @@
+<div class="accordion {% if active %}accordion--active{% endif %}" data-component="accordion" data-group="{{ group }}">
+  <button type="button" class="accordion__header" data-toggle>
+    <h6 class="accordion__title">{{- title -}}</h6>
+  </button>
+  <article class="accordion__inner" data-inner>{{- content -}}</article>
+</div>

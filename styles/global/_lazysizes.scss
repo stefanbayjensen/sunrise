@@ -1,0 +1,81 @@
+/* ---------------------------------------------------------------------
+Lazy sizes
+--------------------------------------------------------------------- */
+
+// BLUR UP EFFECT
+.blur-up {
+  filter: blur(5px);
+  transition: filter 400ms;
+}
+
+.blur-up.lazyloaded {
+  filter: blur(0);
+}
+
+// SPINNER LOAD WRAPPER
+.loadbox {
+  background: transparent;
+  display: inline-block;
+  position: relative;
+
+  &::before {
+    animation: loader 0.5s ease-in infinite;
+    content: '';
+    display: none;
+    height: 20px;
+    left: 50%;
+    //   background:  url($svg-loader) no-repeat 50% 50%/contain;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    z-index: -1;
+  }
+}
+// used when the loadbox should act transparently with surrounding layout
+// this means spinner will be positioned to the closest parent with position
+.loadbox--transparent {
+  background: transparent;
+  display: inline;
+  position: static;
+}
+// used for product image zoom so that there are no spaces between
+.loadbox--block {
+  display: block;
+}
+
+.loadbox--full-height {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+@keyframes loader {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(359deg);
+  }
+}
+
+// DEFAULT EFFECT
+.lazyloading:not(.blur-up),
+.lazyload:not(.blur-up),
+.lazyloaded:not(.blur-up) {
+  // transition: opacity $lazy-image-show-duration $lazy-image-show-timing-fuction;
+  position: relative;
+}
+
+.lazyloading:not(.blur-up),
+.lazyload:not(.blur-up) {
+  opacity: 0;
+  padding-bottom: 100%; // square fallback for old browsers
+  padding-bottom: calc(
+    (1 / var(--aspect-ratio)) * 100%
+  ); /* stylelint-disable-line declaration-block-no-duplicate-properties */
+}
+
+.lazyloaded:not(.blur-up) {
+  opacity: 1;
+}

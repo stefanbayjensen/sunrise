@@ -1,6 +1,6 @@
 export default window.component(() => {
-  console.log('render:some:sections');
-
-  window.app.unmount();
-  window.app.mount();
+  document.addEventListener('shopify:section:load', () => {
+    window.app.unmount();
+    window.app.mount();
+  });
 });
