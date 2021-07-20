@@ -1,7 +1,7 @@
 import 'lazysizes';
 import 'lazysizes/plugins/rias/ls.rias';
 
-const widths = [48, 72, 120, 180, 500, 700, 900, 1000, 1250, 1400, 1550, 1700, 1944, 2140];
+const widths = [180, 512, 748, 920, 1280, 1440, 1920, 2140];
 
 window.lazySizes.cfg.rias.widths = widths;
 

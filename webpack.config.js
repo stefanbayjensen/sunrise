@@ -5,6 +5,7 @@ module.exports = {
   entry: {
     index: './scripts/index.js',
     base: './scripts/util/base.js',
+    product: './scripts/util/product.js',
   },
   stats: 'errors-only',
   mode: process.env.NODE_ENV || 'development',

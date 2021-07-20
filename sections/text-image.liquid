@@ -2,11 +2,17 @@
   assign s = section.settings
 -%}
 
-{%- render 'component.picture', img: s.image, mobile_img: s.mobile_image -%}
+<div class="text-image">
+  <div class="text-image__wrapper">
+    {%- render 'component.picture', img: s.image, mobile_img: s.mobile_image, class: "text-image__image" -%}
+  </div>
+</div>
+
 
 {% schema %}
   {
     "name": "Text image",
+    "class": "text-image--outer",
     "settings": [
       {
         "type": "image_picker",

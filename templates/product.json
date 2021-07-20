@@ -4,37 +4,32 @@
       "type": "main-product",
       "blocks": {
         "vendor": {
-          "type": "text",
+          "type": "string",
           "settings": {
-            "text_style": "uppercase",
             "text": "{{ product.vendor }}"
           }
         },
         "title": {
           "type": "title"
         },
-        "subtitle": {
-          "type": "text",
-          "settings": {
-            "text": "{{ product.metafields.descriptors.subtitle.value }}",
-            "text_style": "subtitle"
-          }
+        "prices": {
+          "type": "prices"
         },
-        "price": {
-          "type": "price"
+        "variants": {
+          "type": "variants"
+        },
+        "cta": {
+          "type": "cta"
+        },
+        "how_to": {
+          "type": "tab",
+          "settings": {
+            "title": "How to use {{ product.title }}",
+            "content": "<p>More text goes <b>here</b></p>"
+          }
         }
       },
-      "block_order": [
-        "vendor",
-        "title",
-        "subtitle",
-        "price",
-        "variant_picker",
-        "quantity_selector",
-        "buy_buttons",
-        "description",
-        "share"
-      ]
+      "block_order": ["vendor", "title", "prices", "variants", "cta", "how_to"]
     }
   },
   "order": ["main"]
