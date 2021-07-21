@@ -1,14 +1,13 @@
 name: Build
-on: [push]
+on: [pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          persist-credentials: false
+
       - name: Setup Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: '14.x'
 
@@ -18,15 +17,9 @@ jobs:
       - name: Compile Assets
         run: npm run build
 
-      - name: Commit Files
-        run: |
-          git config --local user.email "phill@askphill.com"
-          git config --local user.name "Shopify Wizard 🧙🏼‍♂️"
-          git add assets
-          git commit -m "chore: compile source files ✨"
-
-      - name: Push changes
-        uses: ad-m/github-push-action@master
+      - name: Commit and Push changes
+        uses: EndBug/add-and-commit@v7.2.1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ secrets.GITHUB_REF }}
+          author_name: 'Shopify Wizard 🧙🏼‍♂️'
+          author_email: phill@askphill.com
+          message: 'chore: Compile source files ✨'
