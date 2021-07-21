@@ -20,7 +20,7 @@ jobs:
 
       - name: Commit Files
         run: |
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.email "phill@askphill.com"
           git config --local user.name "Shopify Wizard 🧙🏼‍♂️"
           git add assets
           git commit -m "chore: compile source files ✨"
