@@ -1,4 +1,4 @@
-import '../styles/main.scss';
+import '../styles/main.css';
 import './lib/lazysizes';
 import { component } from 'picoapp';
 import app from './app';

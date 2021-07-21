@@ -24,7 +24,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.s[ac]ss$/i,
+        test: /\.css$/i,
         exclude: /node_modules/,
         use: [
           ExtractCSS.loader,
@@ -34,7 +34,17 @@ module.exports = {
               url: false,
             },
           },
-          `sass-loader`,
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  require('tailwindcss')('./.dev/tailwind.config.js'),
+                  require('autoprefixer')
+                ]
+              }
+            }
+          }
         ],
       },
     ],
