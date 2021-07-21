@@ -1,8 +1,10 @@
+@import 'components/skip-to-content.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 html {
-  background: #f00;
+  background: green;
   display: flex;
 }
