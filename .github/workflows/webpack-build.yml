@@ -25,3 +25,4 @@ jobs:
           author_name: 'Shopify Wizard 🧙🏼‍♂️'
           author_email: phill@askphill.com
           message: 'chore: Compile source files ✨'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
