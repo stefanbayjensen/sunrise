@@ -10,10 +10,14 @@
           }
         },
         "title": {
-          "type": "title"
+          "type": "title",
+          "settings": {
+          }
         },
         "prices": {
-          "type": "prices"
+          "type": "prices",
+          "settings": {
+          }
         },
         "variants": {
           "type": "variants",
@@ -22,18 +26,31 @@
           }
         },
         "cta": {
-          "type": "cta"
+          "type": "cta",
+          "settings": {
+          }
         },
         "how_to": {
           "type": "tab",
           "settings": {
             "title": "How to use {{ product.title }}",
-            "content": "<p>More text goes <b>here</b></p>"
+            "content": "<p>More text goes <b>here<\/b><\/p>"
           }
         }
       },
-      "block_order": ["vendor", "title", "prices", "variants", "cta", "how_to"]
+      "block_order": [
+        "vendor",
+        "title",
+        "prices",
+        "variants",
+        "cta",
+        "how_to"
+      ],
+      "settings": {
+      }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }
