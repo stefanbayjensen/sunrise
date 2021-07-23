@@ -8,5 +8,14 @@
     "skip_to_text": "Skip to text",
     "refresh_page": "Refresh page",
     "of": "of"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "adding_to_cart": "Adding to cart",
+      "added_to_cart": "Added to cart",
+      "unavailable": "Unavailable",
+      "sold_out": "Sold out"
+    }
   }
 }

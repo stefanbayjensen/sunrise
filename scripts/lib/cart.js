@@ -1,5 +1,12 @@
 export function fetchCart() {
-  return fetch('/cart.js', {
+  return fetch(`${window.Phill.routes.cart}.js`, {
+    method: 'GET',
+    credentials: 'include',
+  }).then(res => res.json());
+}
+
+export function fetchCartMarkup() {
+  return fetch(`${window.Phill.routes.cart}?sections=cart-drawer`, {
     method: 'GET',
     credentials: 'include',
   }).then(res => res.json());
@@ -8,17 +15,17 @@ export function fetchCart() {
 function changeAddon(id, quantity) {
   window.app.emit('cart:updating');
 
-  return fetch('/cart/change.js', {
+  return fetch(`${window.Phill.routes.cartChange}.js`, {
     method: 'POST',
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ id, quantity }),
+    body: JSON.stringify({ id, quantity, sections: 'cart-drawer' }),
   })
     .then(res => res.json())
-    .then(cart => {
-      window.app.emit('cart:updated', { cart });
+    .then(async cart => {
+      window.app.emit(['cart:updated', 'cart:render'], { cart });
       return cart;
     });
 }
@@ -26,7 +33,7 @@ function changeAddon(id, quantity) {
 export function addItemsById(items = []) {
   window.app.emit('cart:updating');
 
-  return fetch('/cart/add.js', {
+  return fetch(`${window.Phill.routes.cartAdd}.js`, {
     method: 'POST',
     credentials: 'include',
     headers: {
@@ -35,19 +42,22 @@ export function addItemsById(items = []) {
     body: JSON.stringify({ items }),
   })
     .then(r => r.json())
-    .then(item => {
+    .then(async item => {
       if (item.status) {
         window.app.emit(['cart:updated', 'cart:error'], null, item);
         return { item, cart: window.app.getState().cart, error: item?.description };
       }
 
-      return fetchCart().then(cart => {
-        window.app.emit(['cart:updated', 'cart:toggle'], {
-          cart,
-          cartOpen: true,
-        });
-        return { item, cart };
-      });
+      const [cart, cartMarkup] = await Promise.all([fetchCart(), fetchCartMarkup()]);
+
+      cart.sections = cartMarkup;
+
+      window.app.emit(['cart:updated', 'cart:render'], { cart });
+
+      return {
+        item,
+        cart,
+      };
     });
 }
 

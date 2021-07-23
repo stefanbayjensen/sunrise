@@ -3,18 +3,27 @@
   render 'product.head', current_variant: current_variant
 -%}
 
-<div class="product" data-component="productSelection">
-  {%- form 'product', product, class: 'product__form' -%}
+<div class="product px-6 xl:px-16" data-component="productSelection">
+
+  <div class="grid grid-cols-4 gap-1 rounded-sm">
+    {%- for image in product.images -%}
+      {% render 'component.picture', img: image %}
+    {%- endfor -%}
+  </div>
+
+  {%- form 'product', product, class: 'product__form', data-component: "productForm" -%}
+    <input type="hidden" name="quantity" value="1">
+
     {% for block in section.blocks %}
       {%- case block.type -%}
         {%- when 'title' -%}
           <h1 class="product__title">{{- product.title -}}</h1>
         {%- when 'prices' -%}
-          {%- render 'component.price', product: product -%}
+          {%- render 'component.price', product: current_variant, data_attributes: true -%}
         {%- when 'string' -%}
           <p class="product__text">{{- block.settings.text -}}</p>
         {%- when 'cta' -%}
-          <button type="submit">{{- 'Button XD' -}}</button>
+          <button class="w-full xl:w-auto bg-indigo-600 py-4 px-6 rounded text-white font-semibold disabled:cursor-not-allowed disabled:opacity-50" type="submit" data-submit>{{- 'products.product.add_to_cart' | t -}}</button>
         {%- when 'variants' -%}
           {%- 
             render 'product.options',

@@ -1,7 +1,7 @@
 {%- capture radio -%}
   {% for option in product.options_with_values %}
     <div>
-      <div class="product__variant-wrapper" data-option-radio data-index="{{ forloop.index0 }}">
+      <div data-option-radio data-index="{{ forloop.index0 }}">
         {% for value in option.values %}
           {%- liquid
             if option.selected_value == value
@@ -52,7 +52,7 @@
 
 <div class='product-options-wrapper rel'>
   {% unless product.has_only_default_variant %}
-    <div>
+    <div class="js-only-elem">
       <div class="product-options__header">
         <p class="product-options__title">{{- selectSize -}}</p>
       </div>
@@ -73,7 +73,7 @@
     name: 'id'
     options: options
     placeholder: 'Select Option'
-    className: 'js-variant'
+    className: 'no-js-elem'
     required: true
     attributes: 'data-option-main',
   -%}

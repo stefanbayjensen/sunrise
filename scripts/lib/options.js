@@ -1,8 +1,7 @@
-/* eslint-disable no-throw-literal */
+/* eslint-disable */
 import radio from './radio';
 
 export default function productSelection(node, opts) {
-  // eslint-disable-next-line no-param-reassign
   opts = {
     select: '[data-option-select]',
     radio: '[data-option-radio]',
@@ -17,9 +16,9 @@ export default function productSelection(node, opts) {
     options: [],
   };
 
-  const selects = node.querySelectorAll(opts.select);
-  const radios = node.querySelectorAll(opts.radio);
-  const main = node.querySelectorAll(opts.main);
+  const selects = document.querySelectorAll(opts.select);
+  const radios = document.querySelectorAll(opts.radio);
+  const main = document.querySelector(opts.main);
 
   if (!main || !main.length) throw 'data-option-main is missing';
   if (radios.length > 3) throw 'you have more than three radio groups';
@@ -34,7 +33,6 @@ export default function productSelection(node, opts) {
   function updateSelection() {
     state.id = variants[state.options.join(' / ')];
     main.value = state.id;
-    // eslint-disable-next-line no-restricted-syntax
     for (const fn of listeners) fn(state);
   }
 
@@ -78,9 +76,9 @@ export default function productSelection(node, opts) {
       return state;
     },
     onUpdate(fn) {
-      // eslint-disable-next-line no-unused-expressions
       listeners.indexOf(fn) < 0 && listeners.push(fn);
       return () => listeners.splice(listeners.indexOf(fn), 1);
     },
   };
 }
+/* eslint-enable */

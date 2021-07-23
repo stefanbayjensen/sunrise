@@ -2,7 +2,7 @@
   {{- product.id -}}-{{- option.name -}}-{{- value | escape -}}
 {%- endcapture -%}
 
-<div class="product__variant">
+<div class="{{ class }}">
   <input
     id="{{ label | default: default_label }}"
     type="radio"
@@ -14,7 +14,7 @@
     {{ attributes }}
     {% if checked %}checked{% endif %}
   />
-  <label class="{% unless available %} disabled {% endunless %} {{ ISO }}" for="{{ product.id }}-{{ option.name }}-{{ value | escape }}">
+  <label class="{% unless available %} disabled {% endunless %} {{ ISO }}" for="{{ label | default: default_label }}">
     {{- label -}}
   </label>
 </div>

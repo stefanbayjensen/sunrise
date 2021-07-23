@@ -16,7 +16,10 @@
           "type": "prices"
         },
         "variants": {
-          "type": "variants"
+          "type": "variants",
+          "settings": {
+            "type": "radio"
+          }
         },
         "cta": {
           "type": "cta"

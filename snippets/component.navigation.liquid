@@ -1,0 +1,55 @@
+{%- comment -%}
+  {%-
+    render 'component.navigation',
+    navigation: linklist,
+    class: 'linklist',
+    direction: 'column', // Can only be used, if custom class isn't present
+    activeStyling: false,
+    showSubmenu: false
+  -%}
+{%- endcomment -%}
+
+{%- liquid
+  assign showSubmenu = showSubmenu | default: false
+  assign className = class | default: 'linklist'
+  assign direction = direction | default: 'column'
+  assign activeStyling = activeStyling | default: false
+-%}
+{%- if linklists[navigation].links.size -%}
+  <ul class="{{- className }} {{ className -}}--{{- direction -}}">
+    {%- for link in linklists[navigation].links -%}
+      <li
+        class="{{- className -}}__item{% if activeStyling and link.active or activeStyling and link.child_active %} {{ className -}}--active{% endif %}"
+      >
+        <a
+          class="{{- className -}}__link"
+          href="{{- link.url -}}"
+          {%- if link.active -%}
+            aria-current="page"
+          {%- endif -%}
+        >
+          {{- link.title -}}
+        </a>
+        {%- if showSubmenu and link.links.size -%}
+          <ul class="{{- className -}}__submenu">
+            {%- for childLink in link.links -%}
+              <li class="{{- className -}}__submenu__item">
+                <a
+                  class="{{- className -}}__link--submenu {{ className -}}__link"
+                  href="{{- childLink.url -}}"
+                  {%- if childLink.active -%}
+                    aria-current="page"
+                  {%- endif -%}
+                >
+                  {{- childLink.title -}}
+                </a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- else -%}
+          {%- continue -%}
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
+{%- endif -%}

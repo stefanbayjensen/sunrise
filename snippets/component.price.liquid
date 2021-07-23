@@ -1,11 +1,12 @@
 {%- liquid
-  assign price = product.price
-  assign compare_at = product.compare_at_price
+  assign price = price | default: product.price
+  assign compare_at = compare_at | default: product.compare_at_price
+  assign data_attributes = data_attributes | default: false
 -%}
 
 <div class="price--outer">
-  <span class="price">{{- price | money -}}</span>
-  {%- if compare_at > price -%}
-    <span class="price price--old">{{- compare_at | money -}}</span>
+  <span class="price" {% if data_attributes %}data-price{% endif %}>{{- price | money -}}</span>
+  {%- if compare_at > price or data_attributes -%}
+    <span class="price price--old" {% if data_attributes %}data-compare-at-price{% endif %}>{{- compare_at | money -}}</span>
   {%- endif -%}
 </div>

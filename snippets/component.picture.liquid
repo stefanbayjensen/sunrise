@@ -16,6 +16,6 @@
 <picture class="{{ class }}">
   <source data-srcset="{{- mobile_srcset -}}" media="(max-width: 1024px)">
   <source data-srcset="{{- img_srcset -}}" media="(min-width: 1024px)">
-  <img src="{{- img_placeholder -}}" data-src="{{- img_srcset -}}" data-sizes="auto" data-max-width="{{- max_width -}}" alt="{{- img.alt -}}" class="lazyload">
+  <img src="{{- img_placeholder -}}" width="{{- img.width -}}" height="{{- img.height -}}" data-src="{{- img_srcset -}}" data-sizes="auto" data-max-width="{{- max_width -}}" alt="{{- img.alt -}}" class="lazyload {{ img_class }}">
 </picture>
 {% comment %}theme-check-enable{% endcomment %}

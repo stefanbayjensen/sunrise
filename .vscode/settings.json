@@ -54,17 +54,17 @@
     }
   },
 
+  "[liquid]": {
+    "editor.defaultFormatter": "Shopify.theme-check-vscode",
+    "editor.quickSuggestions": {
+      "strings": true
+    }
+  }
+
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
       "source.fixAll.prettier": true
-    }
-  },
-
-  "[liquid]": {
-    "editor.defaultFormatter": "Shopify.theme-check-vscode",
-    "editor.codeActionsOnSave": {
-      "source.fixAll": true
     }
   }
 }

@@ -1,13 +1,3 @@
-{%- style -%}
-  html {
-    font-size: 10px;
-  }
-
-  body {
-    font-size: 1.6rem;
-  }
-{%- endstyle -%}
-
 {{ 'index.css' | asset_url | stylesheet_tag }}
 
 {%- if request.design_mode -%}

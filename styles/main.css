@@ -3,8 +3,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind screens;
 
-html {
-  background: green;
-  display: flex;
+/* stylelint-disable-next-line selector-no-qualifying-type */
+html.no-js .js-only-elem,
+html:not(.no-js) .no-js-elem {
+  display: none;
+  visibility: hidden;
 }

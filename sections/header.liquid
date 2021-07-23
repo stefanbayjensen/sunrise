@@ -1,0 +1,19 @@
+{% render 'section.header', s: section.settings %}
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "link_list",
+        "id": "nav",
+        "label": "Navigation"
+      }
+    ]
+  }
+{% endschema %}

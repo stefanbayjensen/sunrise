@@ -8,6 +8,6 @@ window.app = app;
 window.component = component;
 
 Promise.all([fetchCart()]).then(([cart]) => {
-  app.hydrate(cart);
+  app.hydrate({ cart });
   app.mount();
 });

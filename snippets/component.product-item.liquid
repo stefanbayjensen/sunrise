@@ -1,0 +1,15 @@
+<div class="relative group">
+  <div class="p-6 bg-gray-50 rounded overflow-hidden">
+    {%- render 'component.picture', max_width: 1024, img: product.featured_image, img_class: "mix-blend-multiply transform transition-transform group-hover:scale-105 duration-300" -%}
+  </div>
+  <div class="py-6 px-4 text-center">
+    {%- if product.vendor -%}
+      <p class="uppercase tracking-wide font-semibold text-xs text-gray-400 mb-2">{{- product.vendor -}}</p>
+    {%- endif -%}
+    <h6 class="text-base font-semibold mb-2">{{- product.title -}}</h6>
+    <div class="text-gray-600">
+      {%- render 'component.price', product: product -%}
+    </div>
+  </div>
+  <a href="{{- product.url -}}" class="absolute inset-0 z-10"></a>
+</div> 

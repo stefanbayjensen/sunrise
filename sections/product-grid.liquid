@@ -1,0 +1,27 @@
+{%- liquid
+  unless collection
+    assign collection_handle = section.settings.collection | default: 'all'
+    assign collection = collections[collection_handle]
+  endunless
+-%}
+
+{% render 'section.product-grid', products: collection.products %}
+
+{% schema %}
+  {
+    "name": "Product grid",
+    "settings": [
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Get products from",
+        "info": "If this section is rendered, on a collection page - ignore this"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Product grid"
+      }
+    ]
+  }
+{% endschema %}
