@@ -34,7 +34,8 @@
           "type": "tab",
           "settings": {
             "title": "How to use {{ product.title }}",
-            "content": "<p>More text goes <b>here<\/b><\/p>"
+            "content": "<p>More text goes <strong>here, <\/strong>especially for these components, we really want a lot of text - to really see all the text!<\/p>",
+            "open": false
           }
         }
       },
