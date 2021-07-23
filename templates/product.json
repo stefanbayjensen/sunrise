@@ -37,6 +37,14 @@
             "content": "<p>More text goes <strong>here, <\/strong>especially for these components, we really want a lot of text - to really see all the text!<\/p>",
             "open": false
           }
+        },
+        "e15e6345-cfa9-4266-a884-84ab0141cf9a": {
+          "type": "tab",
+          "settings": {
+            "title": "",
+            "content": "",
+            "open": false
+          }
         }
       },
       "block_order": [
@@ -45,7 +53,8 @@
         "prices",
         "variants",
         "cta",
-        "how_to"
+        "how_to",
+        "e15e6345-cfa9-4266-a884-84ab0141cf9a"
       ],
       "settings": {
       }
