@@ -58,6 +58,9 @@
     "editor.defaultFormatter": "Shopify.theme-check-vscode",
     "editor.quickSuggestions": {
       "strings": true
+    },
+    "editor.codeActionsOnSave": {
+      "source.fixAll.prettier": true
     }
   }
 

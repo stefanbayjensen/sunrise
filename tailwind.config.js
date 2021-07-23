@@ -22,6 +22,8 @@ module.exports = {
       pointerEvents: ['group-open', 'open'],
       opacity: ['disabled', 'group-open', 'open'],
       translate: ['group-open', 'open'],
+      height: ['group-open', 'open'],
+      rotate: ['group-open', 'open'],
     },
   },
   plugins: [

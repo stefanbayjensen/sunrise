@@ -1,11 +1,19 @@
+import { clearCart } from '../../lib/cart';
 import choozy from '../../lib/choozy';
 
 export default window.component((node, ctx) => {
   const parent = node.parentNode;
-  const { toggle } = choozy(node, null);
+  const { toggle, clear, focusEl } = choozy(node, null);
 
   const toggleDrawer = ({ cartOpen }) => {
     node.classList[cartOpen ? 'add' : 'remove']('open');
+    if (cartOpen) {
+      console.log('focus:node', node);
+      node.tabIndex = '';
+      (focusEl || node).focus();
+    } else {
+      node.tabIndex = '-1';
+    }
   };
 
   toggle.forEach(btn => {
@@ -16,16 +24,13 @@ export default window.component((node, ctx) => {
 
   toggleDrawer(ctx.getState());
 
+  if (clear) clear.addEventListener('click', () => clearCart());
+
   ctx.on('cart:toggle', toggleDrawer);
 
   ctx.on('cart:render', ({ cart }) => {
-    const elem = document.createElement('div');
-    elem.innerHTML = cart.sections['cart-drawer'];
-
-    if (!parent.parentNode) return;
-
+    if (parent) parent.outerHTML = cart.sections['cart-drawer'];
     window.app.unmount();
-    parent.parentNode.replaceChild(elem.firstElementChild, parent);
     window.app.mount();
   });
 

@@ -3,7 +3,7 @@ import choozy from '../../lib/choozy';
 export default window.component((node, ctx) => {
   const { group } = node.dataset;
   const { inner, toggle } = choozy(node, null);
-  const activeClass = `${node.classList[0]}--active`;
+  const activeClass = 'open';
 
   const updateHeight = () => {
     node.style.setProperty('--innerHeight', `${inner.scrollHeight}px`);

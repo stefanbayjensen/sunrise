@@ -1,6 +1,7 @@
-<div class="accordion {% if active %}accordion--active{% endif %}" data-component="accordion" data-group="{{ group }}">
-  <button type="button" class="accordion__header" data-toggle>
-    <span class="accordion__title">{{- title -}}</span>
+<div class="group {% if active %}open{% endif %}" data-component="accordion" data-group="{{ group }}">
+  <button type="button" class="flex items-center" data-toggle>
+    <span class="text-md font-semibold">{{- title -}}</span>
+    <span class="w-6 h-6 bg-red-600 block ml-4 transform group-open:rotate-90 transition-transform duration-300"></span>
   </button>
-  <article class="accordion__inner" data-inner>{{- content -}}</article>
+  <article class="group-open:h-innerHeight h-0 overflow-hidden transition-all duration-500" data-inner>{{- content -}}</article>
 </div>

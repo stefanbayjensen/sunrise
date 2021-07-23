@@ -30,6 +30,24 @@ function changeAddon(id, quantity) {
     });
 }
 
+export function clearCart() {
+  window.app.emit('cart:updating');
+
+  return fetch(`${window.Phill.routes.cartClear}.js`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ sections: 'cart-drawer' }),
+  })
+    .then(r => r.json())
+    .then(cart => {
+      window.app.emit(['cart:updated', 'cart:render'], { cart });
+      return cart;
+    });
+}
+
 export function addItemsById(items = []) {
   window.app.emit('cart:updating');
 
