@@ -1,4 +1,16 @@
 {
-  "sections": {},
-  "order": []
+  "sections": {
+    "1627233566bf111de0": {
+      "type": "text-image",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/veloretti-popup__image--mobile.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/ruud-large--mobile.jpg",
+        "title": "Text-image section",
+        "content": "<p>This is the paragraph, connected to this section.<\/p>"
+      }
+    }
+  },
+  "order": [
+    "1627233566bf111de0"
+  ]
 }
