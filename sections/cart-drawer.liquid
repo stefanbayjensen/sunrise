@@ -11,7 +11,7 @@
     <ul class="overflow-auto flex-1">
       {%- for item in cart.items -%}
         <li class="relative flex items-center px-4 py-4 border-b border-gray-200" data-key="{{- item.key -}}" data-component="cartItem">
-          {% render 'component.picture', img: item.image, max_width: 240, class: "w-20 mr-4", lazy: false %}
+          {% render 'component.picture', img: item.image, max_width: 240, class: "w-20 h-20 overflow-hidden mr-4 mb-auto", img_class: "object-contain h-full w-full" lazy: false %}
           <div class="flex flex-1">
             <div>
               <p class="text-base font-semibold">{{- item.product.title -}}</p>
@@ -33,7 +33,15 @@
     </ul>
 
     <div class="p-6">
-      <button type="submit" name="checkout" class="bg-indigo-600 w-full px-6 py-4 rounded text-white font-semibold hover:bg-indigo-800 transition-colors duration-300">{{- 'cart.general.checkout' | t }} / {{ cart.total_price | money -}}</button>
+      {% comment %} theme-check-disable SpaceInsideBraces {% endcomment %}
+      {%-
+        render 'component.button',
+        type: 'submit'
+        name: 'checkout',
+        text: 'cart.general.checkout',
+        class: 'md:w-full'
+      -%}
+      {% comment %} theme-check-enable SpaceInsideBraces {% endcomment %}
     </div>
   </form>
 </div>

@@ -17,5 +17,10 @@
       "unavailable": "Unavailable",
       "sold_out": "Sold out"
     }
+  },
+  "cart": {
+    "general": {
+      "checkout": "Checkout"
+    }
   }
 }

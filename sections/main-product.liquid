@@ -5,25 +5,30 @@
 
 <div class="product px-6 xl:px-16" data-component="productSelection">
 
-  <div class="grid grid-cols-4 gap-1 rounded-sm">
+  <div class="grid grid-cols-4 gap-1">
     {%- for image in product.images -%}
-      {% render 'component.picture', img: image %}
+      {% render 'component.image', img: image %}
     {%- endfor -%}
   </div>
 
-  {%- form 'product', product, class: 'product__form', data-component: "productForm" -%}
+  {%- form 'product', product, class: 'product__form', data-component: "productForm", novalidate: true -%}
     <input type="hidden" name="quantity" value="1">
 
     {% for block in section.blocks %}
       {%- case block.type -%}
         {%- when 'title' -%}
-          <h1 class="product__title">{{- product.title -}}</h1>
+          <h1 class="text-xl font-semibold">{{- product.title -}}</h1>
         {%- when 'prices' -%}
           {%- render 'component.price', product: current_variant, data_attributes: true -%}
         {%- when 'string' -%}
-          <p class="product__text">{{- block.settings.text -}}</p>
+          <p class="text-xs uppercase tracking-wider font-semibold text-gray-400">{{- block.settings.text -}}</p>
         {%- when 'cta' -%}
-          <button class="w-full xl:w-auto bg-indigo-600 py-4 px-6 rounded text-white font-semibold disabled:cursor-not-allowed disabled:opacity-50" type="submit" data-submit>{{- 'products.product.add_to_cart' | t -}}</button>
+          {%-
+            render 'component.button',
+            text: 'products.product.add_to_cart',
+            type: 'submit',
+            attributes: 'data-submit'
+          -%}
         {%- when 'variants' -%}
           {%- 
             render 'product.options',

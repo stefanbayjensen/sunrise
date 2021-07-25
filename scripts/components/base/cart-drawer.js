@@ -1,18 +1,19 @@
 import { clearCart } from '../../lib/cart';
 import choozy from '../../lib/choozy';
+import escKey from '../../lib/listeners';
 
 export default window.component((node, ctx) => {
   const parent = node.parentNode;
+  const el = node;
   const { toggle, clear, focusEl } = choozy(node, null);
 
   const toggleDrawer = ({ cartOpen }) => {
     node.classList[cartOpen ? 'add' : 'remove']('open');
     if (cartOpen) {
-      console.log('focus:node', node);
-      node.tabIndex = '';
+      el.tabIndex = '0';
       (focusEl || node).focus();
     } else {
-      node.tabIndex = '-1';
+      el.tabIndex = '-1';
     }
   };
 
@@ -26,6 +27,8 @@ export default window.component((node, ctx) => {
 
   if (clear) clear.addEventListener('click', () => clearCart());
 
+  node.addEventListener('keyup', e => escKey(e, { type: 'cart:toggle', boolean: 'cartOpen' }));
+
   ctx.on('cart:toggle', toggleDrawer);
 
   ctx.on('cart:render', ({ cart }) => {
@@ -34,5 +37,8 @@ export default window.component((node, ctx) => {
     window.app.mount();
   });
 
-  return () => ctx.on(['cart:toggle', 'cart:render'], () => {})();
+  return () => {
+    ctx.on(['cart:toggle', 'cart:render'], () => {})();
+    node.removeEventListener('keyup', e => escKey(e, { type: 'cart:toggle', boolean: 'cartOpen' }));
+  };
 });

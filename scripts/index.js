@@ -15,7 +15,12 @@ eventSource.onmessage = () => {
   }, 600);
 };
 
+const startTime = new Date().getTime();
+
+console.log('mount:load', new Date().getTime() - startTime);
+
 Promise.all([fetchCart()]).then(([cart]) => {
   app.hydrate({ cart });
+  console.log('mount:cart', new Date().getTime() - startTime);
   app.mount();
 });

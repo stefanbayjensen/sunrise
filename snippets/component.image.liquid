@@ -1,0 +1,29 @@
+{%- liquid
+  assign layout = layout | default: 'responsive'
+  assign img_class = 'absolute inset-0 box-border p-0 border-0 m-auto block w-0 h-0 min-w-full min-h-full max-w-full max-h-full object-cover'
+  assign priority = priority | default: false
+
+  case layout
+    when 'responsive':
+      assign outer_class = 'block overflow-hidden relative box-border m-0'
+      assign wrapper_class = 'block box-border'
+      assign aspect_ratio = 1.00 | plus: img.height | minus: 1 | divided_by: img.width | times: 100
+    when 'fill':
+      assign wrapper_class = 'block overflow-hidden absolute inset-0 box-border m-0'
+  endcase
+-%}
+
+{% comment %} theme-check-disable ImgWidthAndHeight,ImgLazyLoading {% endcomment %}
+<div class="{{- outer_class -}}">
+  <div class="{{- wrapper_class -}}" {% if aspect_ratio %}style="padding-top: {{- aspect_ratio -}}%;"{% endif %}>
+    <img
+      src="{{- img | img_url: widths[0] -}}"
+      alt="{{- img.alt -}}"
+      class="{{- img_class }} {{ class -}}"
+      srcset="{%- render 'function.srcset', img: img -%}"
+      decoding="async"
+      sizes="100vw"
+    >
+  </div>
+</div>
+{% comment %} theme-check-enable ImgWidthAndHeight,ImgLazyLoading {% endcomment %}

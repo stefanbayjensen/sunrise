@@ -7,6 +7,6 @@
 <div class="price--outer">
   <span class="price" {% if data_attributes %}data-price{% endif %}>{{- price | money -}}</span>
   {%- if compare_at > price or data_attributes -%}
-    <span class="price price--old" {% if data_attributes %}data-compare-at-price{% endif %}>{{- compare_at | money -}}</span>
+    <span class="price price--old line-through ml-2 opacity-60" {% if data_attributes %}data-compare-at-price{% endif %}>{{- compare_at | money -}}</span>
   {%- endif -%}
 </div>

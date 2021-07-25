@@ -35,7 +35,7 @@ export default window.component((node, ctx) => {
           submit.disabled = false;
           submit.textContent = getString('product.add_to_cart');
         },
-        error ? 0 : 3000
+        error ? 0 : 1000
       );
     });
   });
