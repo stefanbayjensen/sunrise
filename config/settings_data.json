@@ -9,12 +9,9 @@
       },
       "cart-drawer": {
         "type": "cart-drawer",
-        "settings": {
-        }
+        "settings": {}
       }
     },
-    "content_for_index": [
-
-    ]
+    "content_for_index": []
   }
 }

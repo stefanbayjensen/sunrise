@@ -1,8 +1,12 @@
 {
   "sections": {
     "product-grid": {
-      "type": "product-grid"
+      "type": "product-grid",
+      "settings": {
+      }
     }
   },
-  "order": ["product-grid"]
+  "order": [
+    "product-grid"
+  ]
 }
