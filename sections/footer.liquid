@@ -10,6 +10,9 @@
       <li><a href="{{- link.url -}}">{{- link.title -}}</a></li>
     {%- endfor -%}
   </ul>
+  {%-
+    render: 'component.payment-icons'
+  -%}
 </footer>
 
 {% schema %}
