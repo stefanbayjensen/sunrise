@@ -25,7 +25,8 @@
     "general": {
       "checkout": "Checkout",
       "count": "Cart ({{ count }})",
-      "empty": "You cart is empty"
+      "empty": "You cart is empty",
+      "close": "Close"
     },
     "product_item": {
       "size": "Size:",
