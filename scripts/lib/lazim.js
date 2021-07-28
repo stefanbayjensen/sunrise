@@ -1,6 +1,6 @@
 import vsbl from 'vsbl';
 
-const globalWidths = [120, 512, 768, 1280, 1440, 1920, 2140, 3200];
+const globalWidths = [120, 512, 767, 768, 1440, 1920, 2560];
 let srrafInstance;
 
 export function update() {
@@ -20,8 +20,8 @@ export function bind(attr = 'data-src') {
     const src = node.getAttribute(attr);
     const { maxWidth, desktop, mobile } = node.dataset;
     const widthsObj = {
-      desktop: globalWidths.filter(w => w <= maxWidth && w > 1024),
-      mobile: globalWidths.filter(w => w <= maxWidth && w <= 1024),
+      desktop: globalWidths.filter(w => w <= maxWidth && w >= 768),
+      mobile: globalWidths.filter(w => w <= maxWidth && w < 768),
     };
     const generatedSrcset = Object.entries({ mobile, desktop })
       .map(([key, p]) => widthsObj[key].map(w => `${p.replace('{width}', w)} ${w}w`).join(','))
