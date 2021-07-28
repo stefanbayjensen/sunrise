@@ -26,7 +26,11 @@
       "checkout": "Checkout",
       "count": "Cart ({{ count }})",
       "empty": "You cart is empty",
-      "close": "Close"
+      "close": "Close",
+      "title": "Your cart",
+      "continue_shopping": "Continue shopping",
+      "item": "item",
+      "items": "items"
     },
     "product_item": {
       "size": "Size:",
