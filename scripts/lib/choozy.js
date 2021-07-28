@@ -1,5 +1,4 @@
-/* eslint-disable no-prototype-builtins */
-/* eslint-disable no-nested-ternary */
+/* eslint-disable */
 export default function (container = document.body, prefix = 'js-') {
   const elements = [...container.querySelectorAll(!prefix ? '*' : `[class*="${prefix}"]`)];
   const property = !prefix ? 'dataset' : 'classList';
