@@ -3,7 +3,7 @@
   assign navigation = linklists[s.nav] | default: nil
 -%}
 
-<header class="sticky flex items-center py-6 top-0 left-0 w-full border-b border-gray-100 bg-white px-6 xl:px-16" data-component="header">
+<div class="flex items-center py-6 w-full border-b border-gray-100 bg-white px-6 xl:px-16" data-component="header">
   {%- if s.logo != blank -%}
       <a href="{{- routes.root_url -}}" class="h-8 w-auto flex">
         <img class="h-full w-auto" src="{{- s.logo | img_url: 'x64' -}}" width="{{- s.logo.width -}}" height="{{- s.logo.height -}}" loading="lazy" alt="{{- s.logo.alt -}}">
@@ -26,11 +26,13 @@
 
   <a class="ml-6 text-primary font-bold" href="{{- routes.cart_url -}}" data-cart-toggle>Cart (<span data-cart-count>{{- cart.item_count -}}</span>)</a>
 
-</header>
+</div>
 
 {% schema %}
   {
     "name": "Header",
+    "class": "sticky top-0 lef-0 z-10",
+    "tag": "header",
     "settings": [
       {
         "type": "image_picker",
