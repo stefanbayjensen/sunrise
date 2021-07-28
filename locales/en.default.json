@@ -24,7 +24,13 @@
   "cart": {
     "general": {
       "checkout": "Checkout",
-      "count": "Cart ({{ count }})"
+      "count": "Cart ({{ count }})",
+      "empty": "You cart is empty"
+    },
+    "product_item": {
+      "size": "Size:",
+      "remove": "Remove",
+      "quantity": "Quantity"
     }
   }
 }
