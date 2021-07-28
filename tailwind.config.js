@@ -1,5 +1,4 @@
-const customVariants = require('./.dev/tailwind.variants');
-
+/* eslint-disable global-require */
 module.exports = {
   mode: 'jit',
   purge: [
@@ -19,5 +18,5 @@ module.exports = {
     },
   },
   darkMode: false,
-  plugins: [customVariants],
+  plugins: [require('./.dev/tailwind.variants'), require('@tailwindcss/typography')],
 };
