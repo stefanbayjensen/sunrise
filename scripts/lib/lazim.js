@@ -11,8 +11,6 @@ export function bind(attr = 'data-src') {
   let images;
   const nodes = document.querySelectorAll(`[${attr}],[data-srcset]`);
 
-  const startTime = new Date().getTime();
-
   for (let i = 0; i < nodes.length; i++) {
     const node = nodes[i];
     const img =
@@ -29,13 +27,14 @@ export function bind(attr = 'data-src') {
       .map(([key, p]) => widthsObj[key].map(w => `${p.replace('{width}', w)} ${w}w`).join(','))
       .join(',');
 
-    console.log('img:generated', new Date().getTime() - startTime);
-
     img.onload = () => {
       node.classList.add('is-loaded');
     };
 
     node.removeAttribute(attr);
+    node.removeAttribute('data-desktop');
+    node.removeAttribute('data-mobile');
+    node.removeAttribute('data-max-width');
 
     images = vsbl(node)(() => {
       node.classList.add('is-visible');

@@ -1,3 +1,6 @@
+/*!*********************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[0].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[0].use[2]!./styles/main.css ***!
+  \*********************************************************************************************************************************************************************/
 .skip-to-content {
   background: #fff;
   box-shadow: 0 1.2rem 2.4rem -1rem rgba(#000, 0.16);
@@ -1028,6 +1031,10 @@ video {
   padding-bottom: 0.5rem;
 }
 
+.pt-\[var\(--mobile-ratio\)\] {
+  padding-top: var(--mobile-ratio);
+}
+
 .text-center {
   text-align: center;
 }
@@ -1128,6 +1135,11 @@ video {
 .shadow-xl {
   --tw-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.blur-xl {
+  --tw-blur: blur(24px);
+  filter: var(--tw-filter);
 }
 
 .filter {
@@ -1246,6 +1258,15 @@ video {
   pointer-events: auto;
 }
 
+.loaded\:block.is-loaded {
+  display: block;
+}
+
+.loaded\:blur-0.is-loaded {
+  --tw-blur: blur(0);
+  filter: var(--tw-filter);
+}
+
 @media (min-width: 768px) {
 
   .md\:w-96 {
@@ -1262,6 +1283,10 @@ video {
 
   .md\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .md\:pt-\[var\(--desktop-ratio\)\] {
+    padding-top: var(--desktop-ratio);
   }
 
   .md\:text-xl {

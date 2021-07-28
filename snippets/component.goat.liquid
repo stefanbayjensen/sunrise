@@ -9,12 +9,24 @@
   assign mobile_srcset = mobile_placeholder | replace: '_1x1.', '_{width}x.'
 
   assign lazy = lazy | default: true, allow_false: true
+  assign aspect_ratio = 1.00 | plus: img.height | minus: 1 | divided_by: img.width | times: 100
+  assign mobile_ratio = 1.00 | plus: mobile_img.height | minus: 1 | divided_by: mobile_img.width | times: 100
+  assign placeholder = placeholder | default: '#D6981E'
+  
+  case placeholder
+    when 'image'
+      assign placeholder_image = img | img_url: '16x'
+    else
+      assign placeholder_color = placeholder
+  endcase
 -%}
 
-{% comment %} theme-check-disable ImgLazyLoading {% endcomment %}
+{% comment %} theme-check-disable ImgLazyLoading,RemoteAsset {% endcomment %}
 {%- if lazy -%}
-  <img src="{{- mobile_img | img_url: '16x' -}}" data-src="{{- mobile_placeholder -}}" data-mobile="{{- mobile_srcset -}}" data-desktop="{{- img_srcset -}}" data-max-width="{{- max_width -}}" sizes="50vw" class="{{- class -}}"  alt="{{- img.alt -}}" width="{{- img.width -}}" height="{{- img.height -}}">
+  <div style="--desktop-ratio: {{ aspect_ratio }}%; --mobile-ratio: {{ mobile_ratio }}%; background-color: {{- placeholder_color -}}" class="relative w-full overflow-hidden pt-[var(--mobile-ratio)] md:pt-[var(--desktop-ratio)]">
+    <img src="{{- placeholder_image -}}" data-src="{{- mobile_placeholder -}}" data-mobile="{{- mobile_srcset -}}" data-desktop="{{- img_srcset -}}" data-max-width="{{- max_width -}}" sizes="50vw" class="{{- class -}} absolute inset-0 w-full h-full object-cover {% if placeholder_image %}blur-xl loaded:blur-0{% endif %} hidden loaded:block"  alt="{{- img.alt -}}" width="{{- img.width -}}" height="{{- img.height -}}">
+  </div>
 {%- else -%}
   <img src="{{- img | img_url: max_width -}}" class="{{- class -}}"  alt="{{- img.alt -}}" width="{{- img.width -}}" height="{{- img.height -}}">
 {%- endif -%}
-{% comment %} theme-check-enable ImgLazyLoading {% endcomment %}
+{% comment %} theme-check-enable ImgLazyLoading,RemoteAsset {% endcomment %}

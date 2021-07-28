@@ -23,6 +23,9 @@ module.exports = {
       addVariant('open', ({ modifySelectors, separator }) => {
         modifySelectors(({ className }) => `.${e(`open${separator}${className}`)}.open`);
       });
+      addVariant('loaded', ({ modifySelectors, separator }) => {
+        modifySelectors(({ className }) => `.${e(`loaded${separator}${className}`)}.is-loaded`);
+      });
     }),
   ],
 };
