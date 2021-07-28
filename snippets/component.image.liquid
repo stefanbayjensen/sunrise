@@ -1,29 +1,40 @@
 {%- liquid
-  assign layout = layout | default: 'responsive'
-  assign img_class = 'absolute inset-0 box-border p-0 border-0 m-auto block w-0 h-0 min-w-full min-h-full max-w-full max-h-full object-cover'
-  assign priority = priority | default: false
+  assign max_width = max_width | default: 1920
+  assign mobile_img = mobile_img | default: img
 
-  case layout
-    when 'responsive':
-      assign outer_class = 'block overflow-hidden relative box-border m-0'
-      assign wrapper_class = 'block box-border'
-      assign aspect_ratio = 1.00 | plus: img.height | minus: 1 | divided_by: img.width | times: 100
-    when 'fill':
-      assign wrapper_class = 'block overflow-hidden absolute inset-0 box-border m-0'
+  assign img_placeholder = img | img_url: '1x1'
+  assign img_srcset = img_placeholder | replace: '_1x1.', '_{width}x.'
+  assign img_ratio = 1.00 | divided_by: img.aspect_ratio | times: 100
+
+  assign mobile_placeholder = mobile_img | img_url: '1x1'
+  assign mobile_srcset = mobile_placeholder | replace: '_1x1.', '_{width}x.'
+  assign mobile_ratio = 1.00 | divided_by: mobile_img.aspect_ratio | times: 100
+
+  assign lazy = lazy | default: true, allow_false: true
+  
+  case placeholder
+    when 'image'
+      assign placeholder_image = img | img_url: '16x'
   endcase
 -%}
 
-{% comment %} theme-check-disable ImgWidthAndHeight,ImgLazyLoading {% endcomment %}
-<div class="{{- outer_class -}}">
-  <div class="{{- wrapper_class -}}" {% if aspect_ratio %}style="padding-top: {{- aspect_ratio -}}%;"{% endif %}>
-    <img
-      src="{{- img | img_url: '16x' -}}"
-      alt="{{- img.alt -}}"
-      class="{{- img_class }} {{ class -}}"
-      srcset="{%- render 'function.srcset', img: img -%}"
-      decoding="async"
-      sizes="100vw"
-    >
-  </div>
+{% comment %} theme-check-disable ImgLazyLoading,RemoteAsset {% endcomment %}
+<div style="--desktop-ratio: {{ aspect_ratio | default: img_ratio }}%; --mobile-ratio: {{ aspect_ratio | default: mobile_ratio }}%;" class="{{- class }} relative w-full overflow-hidden pt-[var(--mobile-ratio)] md:pt-[var(--desktop-ratio)]">
+  <img
+    src="{{- placeholder_image | default: mobile_placeholder -}}"
+    {% if lazy %}data-{% endif %}src="{{- mobile_placeholder -}}"
+    data-mobile="{{- mobile_srcset -}}"
+    data-initial="{{- img_srcset -}}"
+    data-max-width="{{- max_width -}}"
+    sizes="50vw"
+    class="{{- img_class }} peer absolute inset-0 w-full h-full {% if placeholder_image %}blur-xl loaded:blur-0{% else %}invisible loaded:visible{% endif %}"
+    alt="{{- alt | default: img.alt | default: shop.name -}}"
+    width="{{- mobile_img.width -}}"
+    height="{{- mobile_img.height -}}"
+    {% unless lazy %}loading="{{- loading | default: 'lazy' -}}"{% endunless %}
+  >
+  {%- unless placeholder_image -%}
+    <div class="absolute inset-0 z-[-1] w-full h-full bg-primary peer-loaded:hidden"></div>
+  {%- endunless -%}
 </div>
-{% comment %} theme-check-enable ImgWidthAndHeight,ImgLazyLoading {% endcomment %}
+{% comment %} theme-check-enable ImgLazyLoading,RemoteAsset {% endcomment %}

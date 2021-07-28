@@ -1,4 +1,4 @@
-if (window.Shopify.theme.role !== 'development') {
+if (window.Shopify.theme.role === 'development') {
   const eventSource = new EventSource('/hot-reload');
 
   eventSource.onmessage = () => {

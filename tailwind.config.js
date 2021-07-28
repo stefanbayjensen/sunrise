@@ -1,4 +1,4 @@
-const plugin = require('tailwindcss/plugin');
+const customVariants = require('./.dev/tailwind.variants');
 
 module.exports = {
   mode: 'jit',
@@ -10,22 +10,14 @@ module.exports = {
     './styles/**/*.css',
     './scripts/**/*.js',
   ],
-  darkMode: false, // or 'media' or 'class'
-  theme: {},
-  variants: {},
-  plugins: [
-    plugin(({ addVariant, e }) => {
-      addVariant('group-open', ({ modifySelectors, separator }) => {
-        modifySelectors(
-          ({ className }) => `.group.open .${e(`group-open${separator}${className}`)}`
-        );
-      });
-      addVariant('open', ({ modifySelectors, separator }) => {
-        modifySelectors(({ className }) => `.${e(`open${separator}${className}`)}.open`);
-      });
-      addVariant('loaded', ({ modifySelectors, separator }) => {
-        modifySelectors(({ className }) => `.${e(`loaded${separator}${className}`)}.is-loaded`);
-      });
-    }),
-  ],
+  theme: {
+    extend: {
+      colors: {
+        primary: '#D6981E',
+        second: 'red',
+      },
+    },
+  },
+  darkMode: false,
+  plugins: [customVariants],
 };
