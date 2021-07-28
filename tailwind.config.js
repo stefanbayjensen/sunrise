@@ -15,6 +15,9 @@ module.exports = {
         primary: '#D6981E',
         second: '#663B89',
       },
+      fontFamily: {
+        circular: "'Circular', sans-serif",
+      },
     },
   },
   darkMode: false,
