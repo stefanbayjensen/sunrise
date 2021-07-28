@@ -2,12 +2,13 @@
   assign s = section.settings
 -%}
 
-<div class="text-image">
+<div class="text-image" data-id="{{- section.id -}}">
   <div class="text-image__wrapper">
     {%- 
       render 'component.goat',
       img: s.image,
       mobile_img: s.mobile_image,
+      max_width: 2560,
     -%}
   </div>
 </div>
