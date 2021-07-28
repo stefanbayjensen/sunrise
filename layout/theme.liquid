@@ -8,10 +8,6 @@
     <link rel="canonical" href="{{ canonical_url }}">
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     
-    {%- for image in product.images limit: 3 -%}
-      <link rel="preload" as="image" imagesrcset="{%- render 'function.srcset', img: image -%}" imagesizes="100vw">
-    {%- endfor -%}
-
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | img_url: '32x32' }}">
     {%- endif -%}
@@ -31,10 +27,8 @@
     <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
   </head>
 
-  <body class="min-h-full">
-    <a class="fixed m-8 p-4 bg-white shadow-xl opacity-0 transform translate-y-4 focus:translate-y-0 duration-300 focus:opacity-100 transition-all z-50 pointer-events-none focus:pointer-events-auto" href="#MainContent">
-      {{- "accessibility.skip_to_text" | t -}}
-    </a>
+  <body class="min-h-screen">
+    {%- render 'component.skip-to-content' -%}
 
     {%- section 'header' -%}
     {%- section 'cart-drawer' -%}
@@ -47,6 +41,7 @@
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
     </ul>
 
-    {% render 'footer.scripts' %}
+    {%- section 'footer' -%}
+    {%- render 'footer.scripts' -%}
   </body>
 </html>

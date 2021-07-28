@@ -1,0 +1,20 @@
+{%- liquid
+  assign max_width = max_width | default: 1920
+  assign mobile_img = mobile_img | default: img
+
+  assign img_placeholder = img | img_url: '1x1'
+  assign img_srcset = img_placeholder | replace: '_1x1.', '_{width}x.'
+
+  assign mobile_placeholder = mobile_img | img_url: '1x1'
+  assign mobile_srcset = mobile_placeholder | replace: '_1x1.', '_{width}x.'
+
+  assign lazy = lazy | default: true, allow_false: true
+-%}
+
+{% comment %} theme-check-disable ImgLazyLoading {% endcomment %}
+{%- if lazy -%}
+  <img src="{{- mobile_img | img_url: '16x' -}}" data-src="{{- mobile_placeholder -}}" data-mobile="{{- mobile_srcset -}}" data-desktop="{{- img_srcset -}}" data-max-width="{{- max_width -}}" sizes="50vw" class="{{- class -}}"  alt="{{- img.alt -}}" width="{{- img.width -}}" height="{{- img.height -}}">
+{%- else -%}
+  <img src="{{- img | img_url: max_width -}}" class="{{- class -}}"  alt="{{- img.alt -}}" width="{{- img.width -}}" height="{{- img.height -}}">
+{%- endif -%}
+{% comment %} theme-check-enable ImgLazyLoading {% endcomment %}

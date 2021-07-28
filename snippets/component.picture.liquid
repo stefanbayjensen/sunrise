@@ -1,5 +1,5 @@
 {%- liquid
-  assign placeholder_size = placeholder_size | default: '1x1'
+  assign placeholder_size = placeholder_size | default: '12x'
   assign placeholder_url = '_' | append: placeholder_size | append: '.'
 
   assign mobile_img = mobile_img | default: img
@@ -14,8 +14,8 @@
 
 {%- comment -%}theme-check-disable{%- endcomment -%}
 <picture class="{{ class }}">
-  <source data-srcset="{{- mobile_srcset -}}" media="(max-width: 1024px)">
-  <source data-srcset="{{- img_srcset -}}" media="(min-width: 1024px)">
-  <img src="{{- img_placeholder -}}" width="{{- img.width -}}" height="{{- img.height -}}" data-src="{{- img_srcset -}}" data-sizes="auto" data-max-width="{{- max_width -}}" alt="{{- img.alt -}}" class="lazyload {{ img_class }}">
+  <source data-srcset="{{- mobile_srcset -}}" data-max-width="{{- max_width -}}" media="(max-width: 1024px)">
+  <source data-srcset="{{- img_srcset -}}" data-max-width="{{- max_width -}}" media="(min-width: 1024px)">
+  <img src="{{- mobile_placeholder -}}" width="{{- img.width -}}" height="{{- img.height -}}" data-src="{{- img_srcset -}}" data-sizes="auto" data-max-width="{{- max_width -}}" alt="{{- img.alt -}}" class="lazyload {{ img_class }}">
 </picture>
 {% comment %}theme-check-enable{% endcomment %}

@@ -5,7 +5,11 @@
   endunless
 -%}
 
-{% render 'section.product-grid', products: collection.products %}
+<div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-1 gap-y-4 xl:px-16">
+  {%- for product in collection.products -%}
+    {% render 'component.product-item', product: product %}
+  {%- endfor -%}
+</div>
 
 {% schema %}
   {

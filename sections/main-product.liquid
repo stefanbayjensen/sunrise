@@ -7,7 +7,7 @@
 
   <div class="grid grid-cols-4 gap-1">
     {%- for image in product.images -%}
-      {% render 'component.image', img: image %}
+      {% render 'component.goat', img: image, max_width: 1280 %}
     {%- endfor -%}
   </div>
 

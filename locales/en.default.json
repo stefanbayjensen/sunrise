@@ -2,6 +2,9 @@
   "general": {
     "search": {
       "search": "Search"
+    },
+    "footer": {
+      "copyright": "&copy; Copyright {{ store }} {{ year }} – All Rights Reserved"
     }
   },
   "accessibility": {
@@ -20,7 +23,8 @@
   },
   "cart": {
     "general": {
-      "checkout": "Checkout"
+      "checkout": "Checkout",
+      "count": "Cart ({{ count }})"
     }
   }
 }

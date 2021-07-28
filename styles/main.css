@@ -11,17 +11,3 @@ html:not(.no-js) .no-js-elem {
   display: none;
   visibility: hidden;
 }
-
-/* stylelint-disable selector-class-pattern */
-@layer utilities {
-  .h-innerHeight {
-    height: var(--innerHeight, auto);
-  }
-
-  @variants group-open, open {
-    .h-innerHeight {
-      height: var(--innerHeight, auto);
-    }
-  }
-}
-/* stylelint-enable selector-class-pattern */

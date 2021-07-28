@@ -23,7 +23,8 @@
   "stylelint.validate": ["css", "sass", "scss"],
 
   "search.exclude": {
-    "**/build": true
+    "**/build": true,
+    "assets": true,
   },
 
   "[javascript]": {

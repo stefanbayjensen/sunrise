@@ -1,6 +1,7 @@
 const plugin = require('tailwindcss/plugin');
 
 module.exports = {
+  mode: 'jit',
   purge: [
     './templates/*.liquid',
     './sections/**/*.liquid',
@@ -10,23 +11,8 @@ module.exports = {
     './scripts/**/*.js',
   ],
   darkMode: false, // or 'media' or 'class'
-  theme: {
-    extend: {},
-  },
-  variants: {
-    extend: {
-      cursor: ['disabled'],
-      margin: ['last'],
-      scale: ['active', 'group-hover', 'group-focus'],
-      backgroundColor: ['group-open', 'open', 'disabled'],
-      textColor: ['disabled'],
-      pointerEvents: ['group-open', 'open', 'focus'],
-      opacity: ['disabled', 'group-open', 'open'],
-      translate: ['group-open', 'open'],
-      height: ['group-open', 'open'],
-      rotate: ['group-open', 'open'],
-    },
-  },
+  theme: {},
+  variants: {},
   plugins: [
     plugin(({ addVariant, e }) => {
       addVariant('group-open', ({ modifySelectors, separator }) => {

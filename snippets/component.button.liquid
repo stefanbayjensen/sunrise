@@ -7,6 +7,6 @@
   endunless
 -%}
 
-<button name="{{ name }}" class="{{ class }} focus:outline-none focus:ring bg-indigo-600 text-white hover:bg-indigo-800 focus:bg-indigo-800 rounded px-6 py-4 font-semibold disabled:bg-gray-300 disabled:text-gray-500 w-full md:w-auto transition-colors duration-300" type="{{- type -}}" {{ attributes }}>
+<button name="{{ name }}" class="focus:outline-none focus:ring bg-indigo-600 text-white hover:bg-indigo-800 focus:bg-indigo-800 rounded px-6 py-4 font-semibold disabled:bg-gray-300 disabled:text-gray-500 w-full md:w-auto transition-colors duration-300 {{ class }}" type="{{- type -}}" {{ attributes }}>
   {{- text -}}
 </button>
