@@ -1,14 +1,14 @@
 {%- liquid
   assign max_width = max_width | default: 1920
-  assign mobile_img = mobile_img | default: img
+  assign desktop_img = desktop_img | default: img
 
   assign img_placeholder = img | img_url: '1x1'
   assign img_srcset = img_placeholder | replace: '_1x1.', '_{width}x.'
   assign img_ratio = 1.00 | divided_by: img.aspect_ratio | times: 100
 
-  assign mobile_placeholder = mobile_img | img_url: '1x1'
-  assign mobile_srcset = mobile_placeholder | replace: '_1x1.', '_{width}x.'
-  assign mobile_ratio = 1.00 | divided_by: mobile_img.aspect_ratio | times: 100
+  assign desktop_placeholder = desktop_img | img_url: '1x1'
+  assign desktop_srcset = desktop_placeholder | replace: '_1x1.', '_{width}x.'
+  assign desktop_ratio = 1.00 | divided_by: desktop_img.aspect_ratio | times: 100
 
   assign lazy = lazy | default: true, allow_false: true
   
@@ -19,18 +19,18 @@
 -%}
 
 {% comment %} theme-check-disable ImgLazyLoading,RemoteAsset {% endcomment %}
-<div style="--desktop-ratio: {{ aspect_ratio | default: img_ratio }}%; --mobile-ratio: {{ aspect_ratio | default: mobile_ratio }}%;" class="{{- class }} relative w-full overflow-hidden pt-[var(--mobile-ratio)] md:pt-[var(--desktop-ratio)]">
+<div style="--mobile-ratio: {{ aspect_ratio | default: img_ratio }}%; --desktop-ratio: {{ aspect_ratio | default: desktop_ratio }}%;" class="{{- class }} relative w-full overflow-hidden pt-[var(--mobile-ratio)] md:pt-[var(--desktop-ratio)]">
   <img
-    src="{{- placeholder_image | default: mobile_placeholder -}}"
-    {% if lazy %}data-{% endif %}src="{{- mobile_placeholder -}}"
-    data-mobile="{{- mobile_srcset -}}"
+    src="{{- placeholder_image | default: img_placeholder -}}"
+    {% if lazy %}data-{% endif %}src="{{- img_placeholder -}}"
     data-initial="{{- img_srcset -}}"
+    data-desktop="{{- desktop_srcset -}}"
     data-max-width="{{- max_width -}}"
     sizes="50vw"
     class="{{- img_class }} peer absolute inset-0 w-full h-full {% if placeholder_image %}blur-xl loaded:blur-0{% else %}invisible loaded:visible{% endif %}"
     alt="{{- alt | default: img.alt | default: shop.name -}}"
-    width="{{- mobile_img.width -}}"
-    height="{{- mobile_img.height -}}"
+    width="{{- img.width -}}"
+    height="{{- img.height -}}"
     {% unless lazy %}loading="{{- loading | default: 'lazy' -}}"{% endunless %}
   >
   {%- unless placeholder_image -%}

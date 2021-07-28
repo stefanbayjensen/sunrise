@@ -1,14 +1,14 @@
-const globalWidths = [120, 390, 512, 768, 1280, 1440, 1920, 2140, 2560];
+const globalWidths = [120, 390, 512, 767, 768, 1280, 1440, 1920, 2140, 2560];
 
-const generateSrcset = ({ initial, mobile, maxWidth } = {}) => {
+const generateSrcset = ({ initial, desktop, maxWidth } = {}) => {
   const array = [
     globalWidths
       .filter(w => w <= maxWidth && w < 768)
-      .map(w => `${mobile.replace('{width}', w)} ${w}w`)
+      .map(w => `${initial.replace('{width}', w)} ${w}w`)
       .join(','),
     globalWidths
       .filter(w => w <= maxWidth && w >= 768)
-      .map(w => `${initial.replace('{width}', w)} ${w}w`)
+      .map(w => `${desktop.replace('{width}', w)} ${w}w`)
       .join(','),
   ];
 
