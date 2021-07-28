@@ -1,0 +1,29 @@
+.keen-slider {
+  display: flex;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: pan-y;
+  -webkit-touch-callout: none;
+  user-select: none;
+  user-select: none;
+  user-select: none;
+  user-select: none;
+  user-select: none;
+}
+.keen-slider,
+.keen-slider__slide {
+  overflow: hidden;
+  position: relative;
+}
+.keen-slider__slide {
+  min-height: 100%;
+  width: 100%;
+}
+.keen-slider[data-keen-slider-v] {
+  flex-wrap: wrap;
+}
+.keen-slider[data-keen-slider-v] .keen-slider__slide {
+  width: 100%;
+}
+.keen-slider[data-keen-slider-moves] * {
+  pointer-events: none;
+}
