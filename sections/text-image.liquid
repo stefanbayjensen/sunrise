@@ -7,7 +7,7 @@
     {%- 
       render 'component.image',
       img: s.image,
-      mobile_img: s.mobile_image,
+      desktop_img: s.desktop_image,
       max_width: 2560,
       alt: s.title
     -%}
@@ -18,7 +18,7 @@
 {% schema %}
   {
     "name": "Text image",
-    "class": "text-image--outer",
+    "tag": "section",
     "settings": [
       {
         "type": "image_picker",
@@ -27,8 +27,8 @@
       },
       {
         "type": "image_picker",
-        "id": "mobile_image",
-        "label": "Mobile image"
+        "id": "desktop_image",
+        "label": "Desktop image"
       },
       {
         "type": "text",
