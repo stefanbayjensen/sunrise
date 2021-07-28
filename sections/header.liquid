@@ -9,7 +9,7 @@
         <img class="h-full w-auto" src="{{- s.logo | img_url: 'x64' -}}" width="{{- s.logo.width -}}" height="{{- s.logo.height -}}" loading="lazy" alt="{{- s.logo.alt -}}">
       </a>
     {%- else -%}
-      <a class="text-xs md:text-xl  xl:text-2xl font-bold" href="{{- routes.root_url -}}">
+      <a class="text-xs md:text-xl  xl:text-2xl font-medium italic" href="{{- routes.root_url -}}">
         <h1>{{- shop.name -}}</h1>
       </a>
   {%- endif -%}
